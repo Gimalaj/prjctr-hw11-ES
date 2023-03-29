@@ -1,12 +1,11 @@
 version: '3.6'
-  services:
+services:
     elasticsearch:
         image: elasticsearch:8.6.0
         restart: always
         environment:
           - xpack.security.enabled=false
           - discovery.type=single-node
-          - 
         ports:
           - '9200:9200'
           - '9300:9300'
@@ -20,4 +19,6 @@ version: '3.6'
         ports:
           - '80:80'
     php:
-        image: php:7.4-fpm
+        image: php:8.1-fpm
+        volumes:
+          - ./nginx/html/:/usr/share/nginx/html/
